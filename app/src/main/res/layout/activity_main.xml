@@ -13,7 +13,8 @@
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:paddingBottom="10dp" />
 
     <ListView
         android:id="@+id/list"

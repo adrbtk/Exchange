@@ -3,7 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:gravity="center_vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
 
     <TextView
         android:id="@+id/organization"
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/ask"
+        android:id="@+id/bid"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -25,7 +26,7 @@
 
     <TextView
         android:textSize="20sp"
-        android:id="@+id/bid"
+        android:id="@+id/ask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
