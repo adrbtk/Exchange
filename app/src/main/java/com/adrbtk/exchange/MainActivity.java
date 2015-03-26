@@ -43,10 +43,11 @@ public class MainActivity extends Activity {
 
         for (Organization orrg : data.organizations) {
             if (orrg.currencies.containsKey("USD")) {
-                finalData.add(orrg);
+                if (!isNOtAdded(finalData, orrg)) {
+                    finalData.add(orrg);
+                }
             }
         }
-
 
         listView.setAdapter(new BaseAdapter() {
             @Override
@@ -72,13 +73,16 @@ public class MainActivity extends Activity {
                 org.setText(curOrg.title);
                 Typeface tf = Typeface.createFromAsset(getAssets(), "digital-7 (mono).ttf");
 
-                TextView ask = (TextView) iv.findViewById(R.id.ask);
-                ask.setTypeface(tf);
-                ask.setText(curOrg.currencies.get("USD").ask);
+                String bid = curOrg.currencies.get("USD").bid;
+                String ask = curOrg.currencies.get("USD").ask;
 
-                TextView bid = (TextView) iv.findViewById(R.id.bid);
-                bid.setTypeface(tf);
-                bid.setText(curOrg.currencies.get("USD").bid);
+                TextView askView = (TextView) iv.findViewById(R.id.ask);
+                askView.setTypeface(tf);
+                askView.setText(ask.substring(0, ask.length() - 2));
+
+                TextView bidView = (TextView) iv.findViewById(R.id.bid);
+                bidView.setTypeface(tf);
+                bidView.setText(bid.substring(0, bid.length() - 2));
 
                 return iv;
             }
@@ -87,6 +91,19 @@ public class MainActivity extends Activity {
         TextView dateView = (TextView) findViewById(R.id.date);
         dateView.setTypeface(Typeface.createFromAsset(getAssets(), "digital-7 (mono).ttf"));
         dateView.setText(data.date);
+    }
+
+    private boolean isNOtAdded(List<Organization> list, Organization org2) {
+        for (Organization org1 : list) {
+            String[] split1 = org1.title.split(" ");
+            String[] split2 = org2.title.split(" ");
+
+            if (split1[0].equals(split2[0])) {
+                org1.title = split1[0];
+                return true;
+            }
+        }
+        return false;
     }
 
 
